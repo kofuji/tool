@@ -5,7 +5,7 @@ strHostName = LCase(Mid(WScript.FullName, _
               InStrRev(WScript.FullName,"\") + 1))
 
 
-'ƒ}ƒEƒX’è”
+'ãƒã‚¦ã‚¹å®šæ•°
 Const MOUSEEVENTF_ABSOLUTE = &H8000
 Const MOUSE_MOVE = &H1
 Const MOUSEEVENTF_LEFTDOWN = &H2
@@ -16,24 +16,24 @@ Sub API_mouse_event(dwFlags, dx, dy, dwData, dwExtraInfo)
 	    Call .ExecuteExcel4Macro("CALL(""user32"",""mouse_event"",""JJJJJj"", " & dwFlags & "," & dx & "," &  dy & "," &  dwData & "," &  dwExtraInfo & ")")
 	End With
 End Sub
-'‚à‚µƒzƒXƒg‚ªwscript.exe‚È‚ç
+'ã‚‚ã—ãƒ›ã‚¹ãƒˆãŒwscript.exeãªã‚‰
 If strHostName = "wscript.exe" Then
-    MsgBox "cscript.exe‚ÅÀs‚µ‚Ä‚­‚¾‚³‚¢B"
-    'ƒXƒNƒŠƒvƒg‚ğI—¹‚·‚é
+    MsgBox "cscript.exeã§å®Ÿè¡Œã—ã¦ãã ã•ã„ã€‚"
+    'ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’çµ‚äº†ã™ã‚‹
     WScript.Quit()
 End If
 
-'cscript.exe‚È‚çˆ—‚ª‘±s‚·‚é
+'cscript.exeãªã‚‰å‡¦ç†ãŒç¶šè¡Œã™ã‚‹
 WScript.StdOut.WriteLine "Start the process:"
 
 Dim WshShell
 Set WshShell = WScript.CreateObject("WScript.Shell")
 
-'ƒƒbƒZ[ƒW•\¦
-WScript.StdOut.WriteLine "It will count for 10 seconds after you press the [Enter] key"
+'ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤º
+WScript.StdOut.WriteLine "It will count for 10 seconds after you press the number of loops + [Enter] key"
 WScript.StdOut.WriteLine "To stop, press [Ctrl]+C."
 
-'1s“Ç‚İ‚ŞimEnternƒL[‚ğ‰Ÿ‚·‚±‚Æ‚É‘Î‰j
+'1è¡Œèª­ã¿è¾¼ã‚€ï¼ˆï¼»Enterï¼½ã‚­ãƒ¼ã‚’æŠ¼ã™ã“ã¨ã«å¯¾å¿œï¼‰
 Dim n
 n = WScript.StdIn.ReadLine()
 
@@ -52,12 +52,12 @@ for i = 1 to n
 	WScript.Sleep 1000
 	
 	Dim intCounter
-	For intCounter = 1 To 10 '‰½•b‘Ò‚Â‚©
-	    '1•b‘Ò‚Â
+	For intCounter = 1 To 10 'ä½•ç§’å¾…ã¤ã‹
+	    '1ç§’å¾…ã¤
 	    WScript.Sleep 1000
-	    'i’»‚ğ¦‚·¡‚ğ•\¦‚·‚é
-	    WScript.StdOut.Write "¡"
+	    'é€²æ—ã‚’ç¤ºã™â– ã‚’è¡¨ç¤ºã™ã‚‹
+	    WScript.StdOut.Write "â– "
 	Next
-	'‰üs‚·‚é
+	'æ”¹è¡Œã™ã‚‹
 	WScript.StdOut.Write vbCrLf
 Next
