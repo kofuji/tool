@@ -1,0 +1,4 @@
+参考URL
+ExcelVBA] WindowsAPIについて：https://memo-program.blogspot.com/2012/08/excelvba-windowsapi.html
+https://gist.github.com/kunst1080/5134725
+VBScriptからWindows API関数を呼び出す：https://kinuasa.wordpress.com/2011/04/17/vbscript%E3%81%8B%E3%82%89windows-api%E9%96%A2%E6%95%B0%E3%82%92%E5%91%BC%E3%81%B3%E5%87%BA%E3%81%99/
