@@ -20,9 +20,9 @@ def add_QA():
     with closing(sqlite3.connect(dbname)) as connection:
         cursor = connection.cursor()
         sql = 'insert into test (question,answer) values (?,?)'
-        data = (input_Ques, input_Ans)
+        data = (input_Ques, input_Ans)  #?に代入する
         cursor.execute(sql, data)
-        connection.commit()
+        connection.commit() #commitを忘れない
         connection.close()
     return
 
