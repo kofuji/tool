@@ -1,37 +1,7 @@
-F：フィボナッチ定数
-
-学習記録
-　日付
-　問題NO
-　正誤判定
-
-'復習目安日の実装
-  F0の初期値:1
-　F1の初期値:0
-　最終学習日＋F1＋F0
-
-正解の時
- 復習タイミングはフィボナッチ定数（忘却曲線に似てるし簡単なので）F0をF1の値に更新
- F1に元のF0とF1を足したF数を入力
- 最終学習日に今日の日付を入力
- today FLG=1
-
-'不正解の時
-　リトライ：同じ問題を再度出力
-　　”違います。正解は～～です。（もしくは解説）”
-	正解するまで繰り返す
-            MsgBox ("You passed the CheckTest!")
-            MsgBox ("Please retry")
-	正解したらToday FLG != 1
-	ただし途中で抜けられるようにしたい
-
-出題ロジック
-　もし復習目安日<=TODAY() かつ Today FLG != 1 then　出題
-　問題がなくなるまで繰り返す
-
 勉強回数
 (select count(id) from log group by 問題番号)
 
 option
 カテゴリの実装
-済　dbをcsvから読み込むようにしたら嬉しい
+GUI追加する
+https://qiita.com/konitech913/items/61dc715ddaad54505a29
