@@ -20,7 +20,7 @@ def add_QA():
     
     with closing(sqlite3.connect(dbname)) as connection:
         cursor = connection.cursor()        
-        sql = "insert into test_master (Question, Answer, scheduled_date, F0, F1) values (?, ?,'1990-1-1',1,0)"
+        sql = "insert into test_master (Question, Answer, scheduled_date, F0, F1) values (?, ?,'1990-01-01',1,0)"
         data = [input_Ques, input_Ans]
         cursor.execute(sql, data)
         connection.commit()
@@ -39,7 +39,7 @@ def check_QA():
 def start_QA():
     with closing(sqlite3.connect(dbname)) as connection:
         cursor = connection.cursor()
-        sql = 'select no, question, answer from test_master'
+        sql = "select no, question, answer from test_master where date('now') >= date(scheduled_date)"
         cursor.execute(sql)
         for row in cursor.fetchall():
             print(row[1], sep = "", end = "\n")
@@ -54,13 +54,25 @@ def start_QA():
                        from test_master as TM \
                        where TM.no = ? and TM.no=test_master.no"
                 cursor.execute(sql, data)
+                print(flg)
             else:
                 flg = "不正解"
+                print("不正解です。正解は"+row[2]+"です。")
+                while row[2] != your_ans:
+                    print("再挑戦してください")
+                    print(row[1])
+                    your_ans = str(input())
+                    if your_ans == "exit()":
+                        break
+                    elif row[2]==your_ans:
+                        print("正解です。チェックテストを通過しました。")
+                        sql = "update test_master set last_date = date('now')  where no = "+str(row[0])
+                        cursor.execute(sql)
+                    
             sql = "insert into study_log (date, no ,result) values (?, ?, ?)"
             data = [datetime.date.today(), row[0], flg]
             cursor.execute(sql, data)
             connection.commit()
-            print(flg)
         connection.close()
 
 menu = 1
