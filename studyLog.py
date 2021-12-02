@@ -39,7 +39,7 @@ def check_QA():
 def start_QA():
     with closing(sqlite3.connect(dbname)) as connection:
         cursor = connection.cursor()
-        sql = "select no, question, answer from test_master where date('now') >= date(scheduled_date)"
+        sql = "select no, question, answer from test_master where date('now') >= date(scheduled_date) and last_date != date('now')"
         cursor.execute(sql)
         for row in cursor.fetchall():
             print(row[1], sep = "", end = "\n")
