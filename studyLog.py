@@ -74,7 +74,7 @@ def start_QA():
             cursor.execute(sql, data)
             connection.commit()
         connection.close()
-
+'''
 menu = 1
 while menu != 0:
     print("メニューを選択してください")
@@ -90,4 +90,40 @@ while menu != 0:
         add_QA()
     elif menu==3:
         check_QA()
+        
+        
+'''
+import PySimpleGUI as sg
+
+sg.theme('Light Gray')   # デザインテーマの設定
+
+# ウィンドウに配置するコンポーネント
+menu_layout = [  [sg.Text('メニューを選択してください')],
+            [sg.Button('出題')],
+            [sg.Button('登録'),sg.Button('問題一覧'),sg.Button('終了')] ]
+
+# ウィンドウの生成
+menu_window = sg.Window('学習記録', menu_layout)
+
+# イベントループ
+while True:
+    event, values = menu_window.read()
+    if event == sg.WIN_CLOSED or event == '終了':
+        break
+    elif event == '出題':
+        with closing(sqlite3.connect(dbname)) as connection:
+            cursor = connection.cursor()
+            sql = "select no, question, answer from test_master where date('now') >= date(scheduled_date) and last_date != date('now')"
+            cursor.execute(sql)
+            for row in cursor.fetchall():
+                qa_layout = [[sg.Text(row[1])],[sg.InputText()]]
+                qa_window = sg.Window('問題', qa_layout)
+                while True:
+                    qa_event, qa_value = qa_window.read()
+                    if qa_event is None:
+                        break                
+                connection.commit()
+            connection.close()        
+
+window.close()
 
